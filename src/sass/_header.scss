@@ -1,0 +1,22 @@
+.header {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: #3457b4;
+    min-height: 60px;
+    box-shadow: 2px 2px 4px 1px rgba(66, 68, 90, 1);
+
+    &__input {
+        border: none;
+        border-radius: 5px;
+        height: 32px;
+        width: 300px;
+
+        &:focus {
+            outline-color: grey;
+
+        }
+    }
+}

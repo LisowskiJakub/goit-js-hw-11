@@ -1,0 +1,21 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@import '~node_modules/modern-normalize/modern-normalize.css';
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-color: #3457b4;
+  min-height: 60px;
+  box-shadow: 2px 2px 4px 1px rgb(66, 68, 90);
+}
+.header__input {
+  border: none;
+  border-radius: 5px;
+  height: 32px;
+  width: 300px;
+}
+.header__input:focus {
+  outline-color: grey;
+}/*# sourceMappingURL=index.css.map */
