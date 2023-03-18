@@ -6,8 +6,8 @@ const gallery = document.querySelector('.gallery')
 const DEBOUNCE_DELAY = 500;
 
 const renderGallery = picturesArr => {
-    const markup = picturesArr
-        .map((picture) => `
+  const markup = picturesArr
+    .map((picture) => `
             <div class="photo-card">
           <img src="${picture.webformatURL}" alt="${picture.tags}" loading="lazy" />
           <div class="info">
@@ -25,19 +25,21 @@ const renderGallery = picturesArr => {
             </p>
              </div>
             </div>`)
-        .join('')
-    gallery.innerHTML = markup;
-    log(markup)
+    .join('')
+  gallery.innerHTML = markup;
+
 }
 
 
 headerInput.addEventListener('input', debounce(() => {
 
 
-    fetchPictures(headerInput.value.trim())
-        .then((data) => {
-            renderGallery(data.hits);
-        })
+  fetchPictures(headerInput.value.trim())
+    .then((data) => {
+
+      log(data)
+      renderGallery(data.hits);
+    })
 
 
 
