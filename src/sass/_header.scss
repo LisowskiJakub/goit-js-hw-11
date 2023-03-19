@@ -70,7 +70,7 @@
 
         }
 
-        &:focus~.header_icon {
+        &:focus~.header__icon {
             //o to za cholerę nie chce zadziałać.
             transform: rotate(180deg);
 

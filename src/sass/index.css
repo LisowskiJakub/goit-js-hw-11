@@ -62,7 +62,7 @@
   background-color: #7287C1;
   border-radius: 0 5px 5px 0px;
 }
-.header__input:focus ~ .header_icon {
+.header__input:focus ~ .header__icon {
   transform: rotate(180deg);
 }
 
