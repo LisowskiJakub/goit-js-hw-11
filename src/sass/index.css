@@ -35,18 +35,19 @@
   height: 32px;
   transition: fill var(--animation), transform var(--animation);
 }
-.header__wrapper:hover .header__input {
-  background-color: #f1e5e0;
+.header__form:hover .header__input {
+  background-color: white;
 }
-.header__wrapper:hover .header__button {
+.header__form:hover .header__button {
   background-color: #7287C1;
   border-radius: 0 5px 5px 0px;
 }
-.header__wrapper:hover .header__icon {
+.header__form:hover .header__icon {
   fill: #ffede2;
   transform: rotate(70deg);
 }
 .header__input {
+  background-color: #f1e5e0;
   padding: 0px 5px;
   border: none;
   border-radius: 5px;
@@ -56,16 +57,51 @@
 }
 .header__input:focus {
   outline: none;
-  background-color: #f1e5e0;
+  background-color: white;
 }
 .header__input:focus ~ .header__button {
   background-color: #7287C1;
   border-radius: 0 5px 5px 0px;
 }
-.header__input:focus ~ .header__icon {
-  transform: rotate(180deg);
+.header__input:focus ~ .header__button .header__icon {
+  fill: white;
+  transform: rotate(70deg);
 }
 
 .gallery {
-  padding: 60px 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 65px 15px;
+}
+
+.photo-card {
+  width: 330px;
+  height: 320px;
+  padding: 1px solid white;
+  box-shadow: 2px 2px 4px -1px rgb(66, 68, 90);
+}
+
+.photo-card img {
+  display: block;
+  width: 330px;
+  height: 250px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  justify-content: space-between;
+  color: #161616;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }/*# sourceMappingURL=index.css.map */

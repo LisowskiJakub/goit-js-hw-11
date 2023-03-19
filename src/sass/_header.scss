@@ -29,10 +29,10 @@
         transition: fill var(--animation), transform (var(--animation));
     }
 
-    &__wrapper {
+    &__form {
 
         &:hover .header__input {
-            background-color: #f1e5e0;
+            background-color: white;
         }
 
         &:hover .header__button {
@@ -49,6 +49,7 @@
     }
 
     &__input {
+        background-color: #f1e5e0;
         padding: 0px 5px;
         border: none;
         border-radius: 5px;
@@ -58,10 +59,9 @@
 
         &:focus {
             outline: none;
-            background-color: #f1e5e0;
+            background-color: white;
 
         }
-
 
         &:focus~.header__button {
 
@@ -70,9 +70,9 @@
 
         }
 
-        &:focus~.header__icon {
-            //o to za cholerę nie chce zadziałać.
-            transform: rotate(180deg);
+        &:focus~.header__button .header__icon {
+            fill: white;
+            transform: rotate(70deg);
 
         }
 
