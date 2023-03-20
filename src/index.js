@@ -1,12 +1,16 @@
 import { fetchPictures } from "./js/fetchPictures";
 import Notiflix from "notiflix";
-const { log } = console
+import debounce from 'lodash.debounce';
+const { log } = console;
 const headerForm = document.querySelector('.header__form');
-const gallery = document.querySelector('.gallery')
-const NotiflixOptions = { distance: '2px', cssAnimationStyle: 'from-right' }
-const loadMoreBtn = document.querySelector('.load-more');
+const gallery = document.querySelector('.gallery');
+const NotiflixOptions = { distance: '2px', cssAnimationStyle: 'from-right' };
+// const loadMoreBtn = document.querySelector('.load-more');
+const SCROLL_MARGIN = 300;
+const DEBOUNCE_TIME = 300;
 let pageNumber = 1;
-let searchData = ''
+let searchData = '';
+const search = document.querySelector('.header__input')
 const renderGallery = picturesArr => {
   const markup = picturesArr
     .map((picture) => `
@@ -27,7 +31,7 @@ const renderGallery = picturesArr => {
       </p>
     </div>
         </div>`)
-    .join('')
+    .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
 
 }
@@ -40,19 +44,29 @@ headerForm.addEventListener('submit', (e) => {
   searchData = search.value.trim();
   fetchPictures(searchData, pageNumber)
     .then((data) => {
-      if (data.hits.length === 0) return Notiflix.Notify.warning('Sorry, there are no images matching your search query. Please try again.', NotiflixOptions)
+      if (data.hits.length === 0) return Notiflix.Notify.warning('Sorry, there are no images matching your search query. Please try again.', NotiflixOptions);
       renderGallery(data.hits);
     })
     .catch((err) => console.log(err))
 })
 
+window.addEventListener("scroll", debounce(() => {
 
-loadMoreBtn.addEventListener('click', () => {
-  pageNumber++;
-  fetchPictures(searchData, pageNumber)
-    .then((data) => {
-      if (data.hits.length === 0) return Notiflix.Notify.warning('Sorry, there are no more images matching your search query. Please try again.', NotiflixOptions)
-      renderGallery(data.hits);
-    })
-    .catch((err) => console.log(err))
-})
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolled = window.scrollY;
+
+  if (scrolled > scrollable - SCROLL_MARGIN) {
+
+    log('ponizej 500')
+    pageNumber++;
+    fetchPictures(searchData, pageNumber)
+      .then((data) => {
+        if (data.hits.length === 0) return Notiflix.Notify.warning('Sorry, there are no more images matching your search query. Please try again.', NotiflixOptions)
+        renderGallery(data.hits);
+      })
+      .catch((err) => console.log(err))
+
+  }
+
+}, DEBOUNCE_TIME)
+);
