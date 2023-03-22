@@ -6,7 +6,7 @@ const headerForm = document.querySelector('.header__form');
 const gallery = document.querySelector('.gallery');
 const NotiflixOptions = { distance: '2px', cssAnimationStyle: 'from-right' };
 // const loadMoreBtn = document.querySelector('.load-more');
-const SCROLL_MARGIN = 300;
+const SCROLL_MARGIN = 1000;
 const DEBOUNCE_TIME = 300;
 let pageNumber = 1;
 let searchData = '';
@@ -44,6 +44,7 @@ headerForm.addEventListener('submit', (e) => {
   searchData = search.value.trim();
   fetchPictures(searchData, pageNumber)
     .then((data) => {
+      log(data)
       if (data.hits.length === 0) return Notiflix.Notify.warning('Sorry, there are no images matching your search query. Please try again.', NotiflixOptions);
       renderGallery(data.hits);
     })
@@ -65,7 +66,6 @@ window.addEventListener("scroll", debounce(() => {
         renderGallery(data.hits);
       })
       .catch((err) => console.log(err))
-
   }
 
 }, DEBOUNCE_TIME)
