@@ -18,6 +18,7 @@
   background-color: #3457b4;
   height: 60px;
   box-shadow: 2px 2px 4px 1px rgb(66, 68, 90);
+  z-index: 1;
 }
 .header__button {
   position: absolute;
@@ -80,7 +81,12 @@
   width: 330px;
   height: 320px;
   padding: 1px solid white;
+  transform: scale(1);
   box-shadow: 2px 2px 4px -1px rgb(66, 68, 90);
+  transition: transform var(--animation);
+}
+.photo-card:hover {
+  transform: scale(1.03);
 }
 
 .photo-card img {

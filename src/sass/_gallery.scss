@@ -12,7 +12,13 @@
     width: 330px;
     height: 320px;
     padding: 1px solid white;
+    transform: scale(1.0);
     box-shadow: 2px 2px 4px -1px rgba(66, 68, 90, 1);
+    transition: transform (var(--animation));
+
+    &:hover {
+        transform: scale(1.03);
+    }
 }
 
 .photo-card img {

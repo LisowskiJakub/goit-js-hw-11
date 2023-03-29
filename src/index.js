@@ -5,10 +5,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css'
 import simpleLightbox from 'simplelightbox';
 const headerForm = document.querySelector('.header__form');
 const gallery = document.querySelector('.gallery');
-const SCROLL_MARGIN = 700;
-const DEBOUNCE_TIME = 500;
+const SCROLL_MARGIN = 1000;
+const DEBOUNCE_TIME = 200;
+const PER_PAGE = 40;
 let pageNumber = 1;
-let perPage = 40;
 let lightbox = new simpleLightbox('.gallery a');
 
 headerForm.addEventListener('submit', (e) => {
@@ -17,7 +17,7 @@ headerForm.addEventListener('submit', (e) => {
   const { search } = e.currentTarget;
   searchInput = search.value.trim();
 
-  getPictures(searchInput, pageNumber, perPage, 'Sorry, there are no images matching to your search query.')
+  getPictures(searchInput, pageNumber, PER_PAGE, 'Sorry, there are no images matching to your search query.')
     .then((data) => {
       renderGallery(data.hits, gallery);
       lightbox.refresh();
@@ -31,9 +31,10 @@ window.addEventListener("scroll", debounce(() => {
 
   if (scrolled > scrollable - SCROLL_MARGIN) {
     pageNumber++;
-    getPictures(searchInput, pageNumber, perPage, `That's all we have`)
+    getPictures(searchInput, pageNumber, PER_PAGE, `That's all we have`)
       .then((data) => {
         renderGallery(data.hits, gallery);
+        lightbox.refresh();
       })
       .catch((err) => console.log(err))
   }
