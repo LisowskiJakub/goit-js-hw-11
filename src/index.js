@@ -35,6 +35,14 @@ window.addEventListener("scroll", debounce(() => {
       .then((data) => {
         renderGallery(data.hits, gallery);
         lightbox.refresh();
+        const { height: cardHeight } = document
+          .querySelector(".gallery")
+          .firstElementChild.getBoundingClientRect();
+
+        window.scrollBy({
+          top: cardHeight * 2,
+          behavior: "smooth",
+        });
       })
       .catch((err) => console.log(err))
   }
