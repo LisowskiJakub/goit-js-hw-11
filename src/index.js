@@ -10,12 +10,13 @@ const DEBOUNCE_TIME = 200;
 const PER_PAGE = 40;
 let pageNumber = 1;
 let lightbox = new simpleLightbox('.gallery a');
+let searchInput;
 
 headerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   gallery.innerHTML = '';
   const { search } = e.currentTarget;
-  let searchInput = search.value.trim();
+  searchInput = search.value.trim();
 
   getPictures(searchInput, pageNumber, PER_PAGE, 'Sorry, there are no images matching to your search query.')
     .then((data) => {
