@@ -15,7 +15,7 @@ headerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   gallery.innerHTML = '';
   const { search } = e.currentTarget;
-  searchInput = search.value.trim();
+  let searchInput = search.value.trim();
 
   getPictures(searchInput, pageNumber, PER_PAGE, 'Sorry, there are no images matching to your search query.')
     .then((data) => {
