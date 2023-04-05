@@ -13,6 +13,7 @@ let lightbox = new simpleLightbox('.gallery a');
 let searchInput;
 
 headerForm.addEventListener('submit', (e) => {
+  pageNumber = 1;
   e.preventDefault();
   gallery.innerHTML = '';
   const { search } = e.currentTarget;
